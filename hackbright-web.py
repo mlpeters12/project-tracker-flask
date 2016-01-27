@@ -18,10 +18,14 @@ def get_student():
 
     github = request.args.get('github','jhacks')
     first, last, github = hackbright.get_student_by_github(github)
+    github, grade, title = hackbright.get_grade_by_github_title(github, grade, title)
+    
     html = render_template("student_info.html",
                             first=first,
                             last=last,
-                            github=github)
+                            github=github,
+                            grade=grade,
+                            title=title)
     return html
 
 @app.route("/add-student-form")
